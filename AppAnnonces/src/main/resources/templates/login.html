@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta charset="utf-8">
+<title>Se connecter</title>
+</head>
+<body>
+	<form th:action="@{}" method="post">
+		<label>Email : </label>
+		<input type="text" th:field="*{email}" />
+		<span th:errors="*{nom}"></span>
+	</form>
+
+</body>
+</html>
