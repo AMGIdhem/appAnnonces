@@ -30,8 +30,8 @@ import com.example.demo.entities.TypeLogement;
 
 
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/annonceur")
+public class AnnonceurController {
 	@Autowired
 	TypeLogementRepository typeLogementRepository;
 	@Autowired
@@ -44,7 +44,7 @@ public class UserController {
 	
 	@RequestMapping("/home")
 	public String Index(Model model) {
-		return "home";
+		return "homeAnnonceur";
 	}
 	
 	@RequestMapping("/formAnnonce")

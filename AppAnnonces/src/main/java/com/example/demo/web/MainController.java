@@ -20,7 +20,7 @@ public class MainController {
 	@Autowired
 	UserRepository userRepository;
 	
-	@GetMapping("/account")
+	@GetMapping("/login")
 	public String account(Model model) {
 		model.addAttribute("user", new User());
 		return "account";
@@ -31,7 +31,7 @@ public class MainController {
 		return "account";
 	}
 	
-	@RequestMapping(value="/login", method = RequestMethod.POST)
+	@RequestMapping(value="/user", method = RequestMethod.POST)
 	public String verif(@RequestParam(name="email") String email, @RequestParam(name="mdp") String mdp) {
 		List<User> usrs = userRepository.findAll();
 		for(User u : usrs) {
