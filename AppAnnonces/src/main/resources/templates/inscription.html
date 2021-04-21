@@ -5,13 +5,14 @@
 <title>Inscription</title>
 </head>
 <body>
-	<form th:action="@{addUser}" method="post" th:object="${user}">
-		<select name="role">
-			<option th:each="r:${roles}" th:value="${r.role}" th:text="${r.role}"></option>
-		</select> <br>
-		<label> Username </label> <input type="text" th:field="*{username}"/> <br>
-		<label> Password </label> <input type="password" th:field="*{password}"/> <br>
-		<button type="submit">S'inscrire</button>
-	</form>
+Inscription
+<!-- 	<form th:action="@{addUser}" method="post" th:object="${user}"> -->
+<!-- 		<select name="role"> -->
+<!-- 			<option th:each="r:${roles}" th:value="${r.role}" th:text="${r.role}"></option> -->
+<!-- 		</select> <br> -->
+<!-- 		<label> Username </label> <input type="text" th:field="*{username}"/> <br> -->
+<!-- 		<label> Password </label> <input type="password" th:field="*{password}"/> <br> -->
+<!-- 		<button type="submit">S'inscrire</button> -->
+<!-- 	</form> -->
 </body>
 </html>

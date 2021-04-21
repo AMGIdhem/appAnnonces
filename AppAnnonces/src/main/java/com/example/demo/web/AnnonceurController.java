@@ -12,6 +12,7 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +32,7 @@ import com.example.demo.entities.TypeLogement;
 
 @Controller
 @RequestMapping("/annonceur")
+@Secured(value={"ROLE_ANNONCEUR"})
 public class AnnonceurController {
 	@Autowired
 	TypeLogementRepository typeLogementRepository;

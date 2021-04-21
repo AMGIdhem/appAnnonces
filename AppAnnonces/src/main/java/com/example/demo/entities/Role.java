@@ -20,5 +20,14 @@ public class Role {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public Role(String role, String description) {
+		super();
+		this.role = role;
+		this.description = description;
+	}
+	public Role() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 }

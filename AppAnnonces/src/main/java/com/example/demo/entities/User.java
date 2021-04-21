@@ -19,6 +19,9 @@ public class User {
 	private String username;
 	private String password;
 	private boolean actived;
+	@ManyToMany
+	@JoinTable(name="USERS_ROLES")
+	private Collection<Role> roles;
 	public boolean isActived() {
 		return actived;
 	}
@@ -31,9 +34,7 @@ public class User {
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
 	}
-	@ManyToMany
-	@JoinTable(name="USERS_ROLES")
-	private Collection<Role> roles;
+	
 	public User(String username, String password, boolean actived, Collection<Role> roles) {
 		super();
 		this.username = username;
