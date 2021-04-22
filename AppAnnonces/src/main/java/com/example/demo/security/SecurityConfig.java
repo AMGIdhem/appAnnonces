@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.security;
 
 import javax.sql.DataSource;
 
@@ -42,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/inscription").permitAll()
 			.antMatchers("/getPhoto").permitAll()
 			.antMatchers("/getAnnonce").permitAll()
+			.antMatchers("/addUser").permitAll()
 				.anyRequest()
 					.authenticated()
 						.and()

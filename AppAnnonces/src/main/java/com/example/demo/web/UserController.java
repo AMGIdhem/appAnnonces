@@ -7,26 +7,44 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dao.RoleRepository;
 import com.example.demo.dao.UserRepository;
 import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
+import com.example.demo.service.UserService;
 
 @Controller
 public class UserController {
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	RoleRepository roleRepository;
 	
-	@RequestMapping(value="/addUser")
-	public User save(User u) {
-		return userRepository.save(u);
+	@RequestMapping(value="/addUser", method=RequestMethod.POST)
+	public String addUser(@Valid User user,
+			BindingResult bindingResult,
+			Model model) {
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("roles", roleRepository.findAll());
+			model.addAttribute("user", new User());
+			return "inscription";
+		}
+		userService.addUser(user);
+		return "homeAnnonceur";
 	}
 	
 	@RequestMapping(value="/findUsers")

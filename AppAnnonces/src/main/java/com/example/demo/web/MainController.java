@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dao.AnnonceRepository;
+import com.example.demo.dao.RoleRepository;
 import com.example.demo.dao.UserRepository;
 import com.example.demo.entities.Annonce;
 import com.example.demo.entities.User;
@@ -35,6 +36,8 @@ public class MainController {
 	UserRepository userRepository;
 	@Autowired
 	AnnonceRepository annonceRepository;
+	@Autowired
+	RoleRepository roleRepository;
 	
 	@Value("${dir.images}")
 	String imageDir;
@@ -52,7 +55,9 @@ public class MainController {
 	}
 	
 	@GetMapping("/inscription")
-	public String inscription() {
+	public String inscription(Model model) {
+		model.addAttribute("roles", roleRepository.findAll());
+		model.addAttribute("user", new User());
 		return "inscription";
 	}
 	

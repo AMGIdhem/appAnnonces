@@ -6,13 +6,25 @@
 </head>
 <body>
 Inscription
-<!-- 	<form th:action="@{addUser}" method="post" th:object="${user}"> -->
-<!-- 		<select name="role"> -->
-<!-- 			<option th:each="r:${roles}" th:value="${r.role}" th:text="${r.role}"></option> -->
-<!-- 		</select> <br> -->
-<!-- 		<label> Username </label> <input type="text" th:field="*{username}"/> <br> -->
-<!-- 		<label> Password </label> <input type="password" th:field="*{password}"/> <br> -->
-<!-- 		<button type="submit">S'inscrire</button> -->
-<!-- 	</form> -->
+	<form th:action="@{addUser}" method="post" th:object="${user}">
+		<select name="role">
+			<option th:each="r:${roles}" th:value="${r.role}" th:text="${r.role}"></option>
+		</select> <br>
+		<label> Username </label> <input type="text" th:field="*{username}"/>
+		<span th:errors="*{username}"></span> <br>
+		<label> Password </label> <input type="password" th:field="*{password}"/>
+		<span class="text-danger" th:errors="*{password}"></span> <br>
+		<label> Confirmer Password </label> <input type="password" th:field="*{matchingPassword}"/> <br>
+		<label> Email </label> <input type="text" th:field="*{email}"/> 
+		<span class="text-danger" th:errors="*{email}"></span><br>
+		<label> Téléphone </label> <input type="text" th:field="*{tel}"/> 
+		<span class="text-danger" th:errors="*{tel}"></span><br>
+<!-- 		<label> Date de naissance </label> <input type="date" th:field="*{dateNaissance}"/> <br> -->
+		<label> Nationalité </label> <input type="text" th:field="*{nationalite}"/> 
+		<span class="text-danger" th:errors="*{nationalite}"></span><br>
+<!-- 		<label> Revenus mensuels nets (jobs étudiants, etc.) </label> <input type="text" th:field="*{revenu}"/> <br> -->
+		<button type="submit">S'inscrire</button>
+	</form>
+	<span>Si vous avez déja un compte :</span> <a th:href="@{login}"> identifiez-vous </a>
 </body>
 </html>

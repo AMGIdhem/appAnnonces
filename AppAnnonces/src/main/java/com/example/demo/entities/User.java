@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,18 +11,32 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import net.bytebuddy.implementation.bind.annotation.Empty;
 
 @Entity
 public class User {
 	@Id
+	@NotNull
+	@NotEmpty
 	private String username;
+	@NotNull
+	@NotEmpty
 	private String password;
+	private String matchingPassword;
 	private boolean actived;
 	@ManyToMany
 	@JoinTable(name="USERS_ROLES")
 	private Collection<Role> roles;
+	@NotNull
+	@NotEmpty
+	private String email;
+	private Date dateNaissance;
+	private int tel;
+	private String nationalite;
+	private String adresse;
 	public boolean isActived() {
 		return actived;
 	}
@@ -56,6 +71,42 @@ public class User {
 	}
 	public User() {
 		super();
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Date getDateNaissance() {
+		return dateNaissance;
+	}
+	public void setDateNaissance(Date dateNaissance) {
+		this.dateNaissance = dateNaissance;
+	}
+	public int getTel() {
+		return tel;
+	}
+	public void setTel(int tel) {
+		this.tel = tel;
+	}
+	public String getNationalite() {
+		return nationalite;
+	}
+	public void setNationalite(String nationalite) {
+		this.nationalite = nationalite;
+	}
+	public String getAdresse() {
+		return adresse;
+	}
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+	public String getMatchingPassword() {
+		return matchingPassword;
+	}
+	public void setMatchingPassword(String matchingPassword) {
+		this.matchingPassword = matchingPassword;
 	}
 	
 	
