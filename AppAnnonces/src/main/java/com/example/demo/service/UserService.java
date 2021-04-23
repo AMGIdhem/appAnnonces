@@ -4,5 +4,5 @@ import com.example.demo.entities.User;
 
 public interface UserService {
 	public void verification();
-	public User addUser(User user);
+	public User addUser(User user, String role);
 }

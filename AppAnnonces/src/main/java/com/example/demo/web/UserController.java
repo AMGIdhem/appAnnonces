@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.RoleRepository;
@@ -37,13 +38,13 @@ public class UserController {
 	@RequestMapping(value="/addUser", method=RequestMethod.POST)
 	public String addUser(@Valid User user,
 			BindingResult bindingResult,
+			@RequestParam(name="role")String role,
 			Model model) {
-		if(bindingResult.hasErrors()) {
+		if(bindingResult.hasErrors() || !((user.getPassword().equals(user.getMatchingPassword())))) {
 			model.addAttribute("roles", roleRepository.findAll());
-			model.addAttribute("user", new User());
 			return "inscription";
 		}
-		userService.addUser(user);
+		userService.addUser(user,role);
 		return "homeAnnonceur";
 	}
 	

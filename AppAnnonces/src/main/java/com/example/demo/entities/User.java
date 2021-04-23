@@ -13,16 +13,18 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import net.bytebuddy.implementation.bind.annotation.Empty;
 
 @Entity
 public class User {
 	@Id
-	@NotNull
 	@NotEmpty
+	@Size(min=5,max=15)
 	private String username;
-	@NotNull
 	@NotEmpty
 	private String password;
 	private String matchingPassword;
@@ -30,9 +32,10 @@ public class User {
 	@ManyToMany
 	@JoinTable(name="USERS_ROLES")
 	private Collection<Role> roles;
-	@NotNull
 	@NotEmpty
+	@Email
 	private String email;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date dateNaissance;
 	private int tel;
 	private String nationalite;
