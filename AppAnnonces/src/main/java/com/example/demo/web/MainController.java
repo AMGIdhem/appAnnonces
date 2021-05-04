@@ -75,6 +75,11 @@ public class MainController {
 		return "annonce";
 	}
 	
+	@GetMapping("/test")
+	public String test() {
+		return "test";
+	}
+	
 //	@RequestMapping(value="/user", method = RequestMethod.POST)
 //	public String verif(@RequestParam(name="email") String email, @RequestParam(name="mdp") String mdp) {
 //		List<User> usrs = userRepository.findAll();

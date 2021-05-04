@@ -45,7 +45,7 @@ public class UserController {
 			return "inscription";
 		}
 		userService.addUser(user,role);
-		return "homeAnnonceur";
+		return "login";
 	}
 	
 	@RequestMapping(value="/findUsers")
