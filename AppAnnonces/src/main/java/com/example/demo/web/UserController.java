@@ -45,7 +45,7 @@ public class UserController {
 			return "inscription";
 		}
 		userService.addUser(user,role);
-		return "homeAnnonceur";
+		return "login";
 	}
 	
 	@RequestMapping(value="/findUsers")
@@ -69,6 +69,9 @@ public class UserController {
 			}
 			else if(r.equals("ANNONCEUR")) {
 				return "homeAnnonceur";
+			}
+			else if(r.equals("ADMIN")) {
+				return "homeAdmin";
 			}
 		}
 		Map<String, Object> params=new HashMap<>();
