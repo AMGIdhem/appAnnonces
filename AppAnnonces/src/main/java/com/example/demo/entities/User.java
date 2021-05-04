@@ -40,6 +40,16 @@ public class User {
 	private int tel;
 	private String nationalite;
 	private String adresse;
+	private String emploi;
+	private int cin;
+	
+	public String getEmploi() {
+		return emploi;
+	}
+	public void setEmploi(String emploi) {
+		this.emploi = emploi;
+	}
+	
 	public boolean isActived() {
 		return actived;
 	}
@@ -111,6 +121,30 @@ public class User {
 	public void setMatchingPassword(String matchingPassword) {
 		this.matchingPassword = matchingPassword;
 	}
+	public User(@NotEmpty @Size(min = 5, max = 15) String username, @NotEmpty String password, String matchingPassword,
+			boolean actived, Collection<Role> roles, @NotEmpty @Email String email, Date dateNaissance, int tel,
+			String nationalite, String adresse, String emploi, int cin) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.matchingPassword = matchingPassword;
+		this.actived = actived;
+		this.roles = roles;
+		this.email = email;
+		this.dateNaissance = dateNaissance;
+		this.tel = tel;
+		this.nationalite = nationalite;
+		this.adresse = adresse;
+		this.emploi = emploi;
+		this.cin = cin;
+	}
+	public int getCin() {
+		return cin;
+	}
+	public void setCin(int cin) {
+		this.cin = cin;
+	}
+	
 	
 	
 }

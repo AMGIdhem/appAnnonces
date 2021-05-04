@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +31,8 @@ import com.example.demo.dao.TypeLogementRepository;
 import com.example.demo.entities.Annonce;
 import com.example.demo.entities.Quartier;
 import com.example.demo.entities.TypeLogement;
+import com.example.demo.entities.User;
+import com.example.demo.service.UserService;
 
 
 @Controller
@@ -40,6 +45,9 @@ public class AnnonceurController {
 	QuartierRepository quartierRepository;
 	@Autowired
 	AnnonceRepository annonceRepository;
+	
+	@Autowired
+	UserService userService;
 	
 	@Value("${dir.images}")
 	String imageDir;
@@ -109,5 +117,16 @@ public class AnnonceurController {
 		Annonce an = annonceRepository.getOne(id);
 		model.addAttribute("annonce", an);
 		return "editAnnonce";
+	}
+	
+	@RequestMapping(value="/monProfil")
+	public String monProfil(Model model, HttpServletRequest httpServletRequest) {
+		HttpSession httpSession = httpServletRequest.getSession();
+		SecurityContext securityContext=(SecurityContext) 
+				httpSession.getAttribute("SPRING_SECURITY_CONTEXT");
+		String username=securityContext.getAuthentication().getName();
+		User monProfil = userService.findByUsername(username);
+		model.addAttribute("monProfil", monProfil);
+		return "profilAnnonceur";
 	}
 }

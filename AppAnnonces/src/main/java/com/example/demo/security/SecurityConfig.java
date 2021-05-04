@@ -43,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/getPhoto").permitAll()
 			.antMatchers("/getAnnonce").permitAll()
 			.antMatchers("/addUser").permitAll()
+			.antMatchers("/test").permitAll()
 				.anyRequest()
 					.authenticated()
 						.and()
@@ -50,7 +51,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/login")
 				.permitAll()
 				.successHandler(myAuthenticationSuccessHandler())
-				.failureUrl("/error.html");
+				.failureUrl("/error.html")
+					.and()
+			.logout()
+				.invalidateHttpSession(true)
+				.logoutUrl("/logout")
+				.permitAll();
+			
 		
 		
 	}
