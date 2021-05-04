@@ -15,7 +15,7 @@ public class EtudiantController {
 	}
 	
 	@RequestMapping("/deposer")
-	public String deposer(Model model) {
+	public String deposer() {
 		return "formDossier";
 	}
 }

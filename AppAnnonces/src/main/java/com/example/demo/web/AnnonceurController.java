@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.dao.AnnonceRepository;
 import com.example.demo.dao.QuartierRepository;
 import com.example.demo.dao.TypeLogementRepository;
+import com.example.demo.dao.UserRepository;
 import com.example.demo.entities.Annonce;
 import com.example.demo.entities.Quartier;
 import com.example.demo.entities.TypeLogement;
@@ -45,6 +46,8 @@ public class AnnonceurController {
 	QuartierRepository quartierRepository;
 	@Autowired
 	AnnonceRepository annonceRepository;
+	@Autowired
+	UserRepository userRepository;
 	
 	@Autowired
 	UserService userService;
@@ -72,7 +75,8 @@ public class AnnonceurController {
 			BindingResult bindingResult,
 			@RequestParam(name="picture")MultipartFile file,
 			@RequestParam(name="typeLogement")Long idType,
-			@RequestParam(name="quartier")Long idQuartier) throws Exception {
+			@RequestParam(name="quartier")Long idQuartier,
+			HttpServletRequest httpServletRequest) throws Exception {
 		if(bindingResult.hasErrors()) {
 			return "formAnnonce";
 		}
@@ -81,7 +85,12 @@ public class AnnonceurController {
 		Optional<Quartier> quartier = quartierRepository.findById(idQuartier);
 		an.setTypeLogement(typeLogement.get());
 		an.setQuartier(quartier.get());
-		an.setUser(null);
+		HttpSession httpSession = httpServletRequest.getSession();
+		SecurityContext securityContext=(SecurityContext) 
+				httpSession.getAttribute("SPRING_SECURITY_CONTEXT");
+		String username=securityContext.getAuthentication().getName();
+		User user = userRepository.findById(username).get();
+		an.setUser(user);
 		annonceRepository.save(an);
 		if(!(file.isEmpty())) {
 			an.setPhoto(file.getOriginalFilename());
@@ -93,8 +102,12 @@ public class AnnonceurController {
 	}
 	
 	@RequestMapping(value="/mesAnnonces")
-	public String mesAnnonces(Model model) {
-		List<Annonce> mesAnnonces = annonceRepository.findAll();
+	public String mesAnnonces(Model model, HttpServletRequest httpServletRequest) {
+		HttpSession httpSession = httpServletRequest.getSession();
+		SecurityContext securityContext=(SecurityContext) 
+				httpSession.getAttribute("SPRING_SECURITY_CONTEXT");
+		String username=securityContext.getAuthentication().getName();
+		List<Annonce> mesAnnonces = annonceRepository.findByUser_username(username);
 		model.addAttribute("mesAnnonces", mesAnnonces);
 		return "mesAnnonces";
 	}

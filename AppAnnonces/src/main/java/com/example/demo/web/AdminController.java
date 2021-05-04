@@ -31,5 +31,11 @@ public class AdminController {
 		model.addAttribute("users", users);
 		return "users";
 	}
+	
+	@RequestMapping(value="/supprimer")
+	public String supprimer(String username) {
+		userRepository.deleteById(username);
+		return "redirect:getAllUsers";
+	}
 
 }

@@ -8,7 +8,9 @@
 Inscription
 	<form th:action="@{addUser}" method="post" th:object="${user}">
 		<select name="role" id="target" onchange="showDiv(this)">
-			<option th:each="r:${roles}" th:value="${r.role}" th:text="${r.role}"></option>
+<!-- 			<option th:each="r:${roles}" th:value="${r.role}" th:text="${r.role}"></option> -->
+			<option value="ANNONCEUR" >ANNONCEUR</option>
+			<option value="ETUDIANT" >ETUDIANT</option>
 		</select> <br>
 		<label> Username </label> <input type="text" th:field="*{username}"/>
 		<span th:errors="*{username}"></span> <br>
