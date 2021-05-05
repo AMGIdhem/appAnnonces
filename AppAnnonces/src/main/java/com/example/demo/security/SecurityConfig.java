@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled=true)
@@ -38,6 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
+			.antMatchers("/",
+					"/css/**",
+					"/images/**").permitAll()
 			.antMatchers("/").permitAll()
 			.antMatchers("/inscription").permitAll()
 			.antMatchers("/getPhoto").permitAll()
@@ -53,10 +57,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll()
 				.successHandler(myAuthenticationSuccessHandler())
 				.failureUrl("/error.html")
-					.and()
+					/*.and()
 			.logout()
 				.invalidateHttpSession(true)
 				.logoutUrl("/logout")
+				.permitAll();*/
+				.and()
+				.logout()
+				.invalidateHttpSession(true)
+				.clearAuthentication(true)
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/login?logout")
 				.permitAll();
 
 			

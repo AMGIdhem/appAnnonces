@@ -48,6 +48,11 @@ public class MainController {
 		return "login";
 	}
 	
+	@GetMapping("/logout")
+	public String logout(Model model) {
+		return "login";
+	}
+	
 	@GetMapping("/")
 	public String index(Model model) {
 		model.addAttribute("annonces", annonceRepository.findAll());
