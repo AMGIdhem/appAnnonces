@@ -13,7 +13,7 @@ import com.example.demo.entities.User;
 
 @Controller
 @RequestMapping("/admin")
-@Secured(value={"ROLE_ADMIN"})
+//@Secured(value={"ROLE_ADMIN"})
 public class AdminController {
 	
 	@Autowired

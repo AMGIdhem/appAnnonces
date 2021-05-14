@@ -5,11 +5,14 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 public class Dossier {
 	@Id
 	@GeneratedValue
 	private long id;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date dateEntree;
 	private String etablissement;
 	private String garantNom;

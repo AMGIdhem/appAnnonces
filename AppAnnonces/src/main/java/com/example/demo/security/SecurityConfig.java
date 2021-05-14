@@ -40,36 +40,40 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http
 			.authorizeRequests()
-			.antMatchers("/",
-					"/css/**",
-					"/images/**").permitAll()
-			.antMatchers("/").permitAll()
-			.antMatchers("/inscription").permitAll()
-			.antMatchers("/getPhoto").permitAll()
-			.antMatchers("/getAnnonce").permitAll()
-			.antMatchers("/addUser").permitAll()
-			.antMatchers("/test").permitAll()
-			.antMatchers("/api/annonces").permitAll()
-				.anyRequest()
-					.authenticated()
-						.and()
-			.formLogin()
-				.loginPage("/login")
-				.permitAll()
-				.successHandler(myAuthenticationSuccessHandler())
-				.failureUrl("/error.html")
+			.antMatchers("/").permitAll();
+//			.antMatchers("/",
+//					"/css/**",
+//					"/images/**").permitAll()
+//			.antMatchers("/").permitAll()
+//			.antMatchers("/inscription").permitAll()
+//			.antMatchers("/getPhoto").permitAll()
+//			.antMatchers("/getAnnonce").permitAll()
+//			.antMatchers("/addUser").permitAll()
+//			.antMatchers("/test").permitAll()
+//			.antMatchers("/api/getAnnonces").permitAll()
+//			.antMatchers("/api/getUsers").permitAll()
+//			.antMatchers("/api/getAnnonces").permitAll()
+//			.antMatchers("/api/").permitAll()
+//				.anyRequest()
+//					.authenticated()
+//						.and()
+//			.formLogin()
+//				.loginPage("/login")
+//				.permitAll()
+//				.successHandler(myAuthenticationSuccessHandler())
+//				.failureUrl("/error.html")
 					/*.and()
 			.logout()
 				.invalidateHttpSession(true)
 				.logoutUrl("/logout")
 				.permitAll();*/
-				.and()
-				.logout()
-				.invalidateHttpSession(true)
-				.clearAuthentication(true)
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/login?logout")
-				.permitAll();
+//				.and()
+//				.logout()
+//				.invalidateHttpSession(true)
+//				.clearAuthentication(true)
+//				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//				.logoutSuccessUrl("/login?logout")
+//				.permitAll();
 
 			
 		

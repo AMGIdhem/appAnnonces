@@ -8,13 +8,11 @@
 <title>Déposer votre dossier</title>
 </head>
 <body>
-<<<<<<< HEAD
+
 	<div layout:fragment="pageContent" class="container">
-	</div>
-=======
-	
 	<form th:action="@{saveDossier}" method="post" th:object="${dossier}">
 			<h2>Fiche locataire</h2>
+		<input type="text" name="idAnnonce" th:value="${idAnnonce}"/>
 		<label> Date Entrée  </label> <input type="date" th:field="*{dateEntree}"/> <br>
 		<label> Etablissement </label> <input type="text" th:field="*{etablissement}"/> <br>
 			<h2> Garant </h2>
@@ -22,14 +20,16 @@
 		<label> Garant Prenom </label> <input type="text" th:field="*{garantPrenom}"/> <br>
 		<label> Garant Relation </label> 
 		<select name="relation">
-			<option value="père" >père</option>
-			<option value="mère" >mère</option>
-			<option value="frère" >frère</option>
-			<option value="soeur" >soeur</option>
-			<option value="autre" >autre</option>
+			<option value="père" th:field="*{garantRelation}" >père</option>
+			<option value="mère" th:field="*{garantRelation}">mère</option>
+			<option value="frère" th:field="*{garantRelation}">frère</option>
+			<option value="soeur" th:field="*{garantRelation}">soeur</option>
+			<option value="autre" th:field="*{garantRelation}">autre</option>
 		</select> <br>
 		<button type="submit">Enregistrer</button>
 	</form>
->>>>>>> branch 'master' of https://github.com/AMGIdhem/appAnnonces.git
+	</div>
+	
+	
 </body>
 </html>

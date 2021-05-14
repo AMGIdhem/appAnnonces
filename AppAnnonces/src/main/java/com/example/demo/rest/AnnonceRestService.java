@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.AnnonceRepository;
+import com.example.demo.dao.UserRepository;
 import com.example.demo.entities.Annonce;
+import com.example.demo.entities.User;
 
 
 @RestController
@@ -18,9 +20,16 @@ public class AnnonceRestService {
 	@Autowired
 	private AnnonceRepository annonceRepository;
 	
-	@GetMapping("annonces")
+	@GetMapping("getAnnonces")
 	public List<Annonce> getAnnonces() {
 		return this.annonceRepository.findAll();
+	}
+	@Autowired
+	UserRepository userRepository;
+
+	@GetMapping("getUsers")
+	public List<User> getUsers() {
+		return this.userRepository.findAll();
 	}
 
 

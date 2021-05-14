@@ -38,7 +38,7 @@ import com.example.demo.service.UserService;
 
 @Controller
 @RequestMapping("/annonceur")
-@Secured(value={"ROLE_ANNONCEUR"})
+//@Secured(value={"ROLE_ANNONCEUR"})
 public class AnnonceurController {
 	@Autowired
 	TypeLogementRepository typeLogementRepository;

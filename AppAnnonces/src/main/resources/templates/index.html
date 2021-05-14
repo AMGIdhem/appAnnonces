@@ -56,7 +56,7 @@
 					<td th:text="${a.description}"></td>
 					
 					<td><a th:href="@{getAnnonce(id=${a.id})}">+ d'infos</a></td>
-					<td><a th:href="@{etudiant/deposer}">Déposer mon dossier</a></td>
+					<td><a th:href="@{etudiant/deposer(id=${a.id})}">Déposer mon dossier</a></td>
 				</tr>
 			</tbody>
 		</table>
